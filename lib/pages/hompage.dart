@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:demo8/model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -10,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<RecipeModel> recipeList = <RecipeModel>[];
   TextEditingController searchController = new TextEditingController();
   String url =
       "https://api.edamam.com/search?q=chicken&app_id=b5bda55b&app_key=b05d2191964b86ed8eeaca98180eb719";
@@ -19,7 +21,20 @@ class _HomePageState extends State<HomePage> {
         "https://api.edamam.com/search?q=$query&app_id=b5bda55b&app_key=b05d2191964b86ed8eeaca98180eb719";
     Response response = await get(Uri.parse(url));
     Map data = jsonDecode(response.body);
-    log(data.toString());
+
+    data['hits'].forEach((element) {
+      RecipeModel recipeModel = new RecipeModel();
+      recipeModel = RecipeModel.fromMap(element['recipe']);
+      recipeList.add(recipeModel);
+      // log(recipeList.toString());
+    });
+
+    recipeList.forEach((Recipe) {
+      print(Recipe.applabel);
+      print(Recipe.appcalories);
+      print(Recipe.appimgurl);
+      print(Recipe.appurl);
+    });
   }
 
   @override
