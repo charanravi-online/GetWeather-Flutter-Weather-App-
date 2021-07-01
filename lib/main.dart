@@ -1,3 +1,4 @@
+import 'package:demo8/pages/home.dart';
 import 'package:demo8/pages/hompage.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Poppins",
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Home(),
     );
   }
 }
