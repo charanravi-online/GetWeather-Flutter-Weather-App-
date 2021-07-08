@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:demo8/pages/recipeview.dart';
 import 'package:demo8/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:demo8/model/model.dart';
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
   List reciptCatList = [
     {
       "imgUrl": "https://images.unsplash.com/photo-1593560704563-f176a2eb61db",
-      "heading": "Chilli Food"
+      "heading": "Spicy"
     },
     {
       "imgUrl": "https://images.unsplash.com/photo-1593560704563-f176a2eb61db",
@@ -145,7 +146,13 @@ class _HomeState extends State<Home> {
                             itemCount: recipeList.length,
                             itemBuilder: (context, index) {
                               return InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => RecipeView(
+                                              recipeList[index].appurl)));
+                                },
                                 child: Card(
                                   margin: EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(
@@ -220,7 +227,13 @@ class _HomeState extends State<Home> {
                       itemBuilder: (context, index) {
                         return Container(
                             child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search(
+                                        reciptCatList[index]["Heading"])));
+                          },
                           child: Card(
                               margin: EdgeInsets.all(20),
                               shape: RoundedRectangleBorder(
